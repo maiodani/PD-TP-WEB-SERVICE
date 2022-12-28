@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pt.isec.pd.boxoffice</groupId>
-	<artifactId>web_service</artifactId>
+	<artifactId>pd_tp_web_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>web_service</name>
 	<description>web_service</description>
