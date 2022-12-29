@@ -10,7 +10,6 @@ import pt.isec.pd.boxoffice.web_service.database.DataBaseManager;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("shows")
 public class ListShowController {
 
     @GetMapping("/shows")
@@ -22,6 +21,18 @@ public class ListShowController {
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error obtain shows");
     }
+
+    @RequestMapping("shows")
+    @GetMapping("{date}")
+    public ResponseEntity showsFilter(Principal principal)
+    {
+        String shows;
+        if(( shows = new DataBaseManager().shows(null, null)) != null){
+            return ResponseEntity.ok(shows);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error obtain shows");
+    }
+
 
 
 }
