@@ -3,7 +3,6 @@ package pt.isec.pd.boxoffice.web_service.controllers;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pt.isec.pd.boxoffice.web_service.database.DataBaseManager;
 import pt.isec.pd.boxoffice.web_service.security.TokenService;
 
 @RestController

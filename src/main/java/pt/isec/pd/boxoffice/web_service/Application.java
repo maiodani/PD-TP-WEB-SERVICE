@@ -22,7 +22,6 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import pt.isec.pd.boxoffice.web_service.database.DataBaseManager;
 import pt.isec.pd.boxoffice.web_service.security.RsaKeyProperties;
 import pt.isec.pd.boxoffice.web_service.security.UserAuthenticationProvider;
 
@@ -31,11 +30,9 @@ import pt.isec.pd.boxoffice.web_service.security.UserAuthenticationProvider;
 public class Application
 {
 	private final RsaKeyProperties rsaKeys;
-	private final DataBaseManager dataBaseManager;
 
 	public Application(RsaKeyProperties rsaKeys)
 	{
-		this.dataBaseManager = new DataBaseManager();
 		this.rsaKeys = rsaKeys;
 	}
 
