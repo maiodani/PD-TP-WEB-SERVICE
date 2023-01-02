@@ -27,17 +27,14 @@ public class UserAuthenticationProvider implements AuthenticationProvider
     {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-
+        List<GrantedAuthority> authorities = new ArrayList<>();
         if (username.equals("admin") && password.equals("admin"))
         {
-            List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("ADMIN"));
-
             return new UsernamePasswordAuthenticationToken(username, password, authorities);
         }else{
             if(userService.checkUserLogIn(username, password)){
-                List<GrantedAuthority> authorities = new ArrayList<>();
-                authorities.add(new SimpleGrantedAuthority("User"));
+                authorities.add(new SimpleGrantedAuthority("USER"));
                 return new UsernamePasswordAuthenticationToken(username, password, authorities);
             }
         }

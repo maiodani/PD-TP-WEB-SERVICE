@@ -13,7 +13,7 @@ import pt.isec.pd.boxoffice.web_service.service.UserService;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
 
     private UserService userService;

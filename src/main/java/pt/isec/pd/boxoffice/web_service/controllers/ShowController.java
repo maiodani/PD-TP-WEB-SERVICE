@@ -15,7 +15,7 @@ public class ShowController {
         this.showService = showService;
     }
 
-    //http://localhost:8083/shows?date_start=10/02/2021&date_end=10/03/2022
+    //http://localhost:8083/shows?date_start=2021/02/20&date_end=2024/03/10
 
     @GetMapping("/shows")
     public ResponseEntity showsFilters(@RequestParam(name="date_start",defaultValue="") String date_start,

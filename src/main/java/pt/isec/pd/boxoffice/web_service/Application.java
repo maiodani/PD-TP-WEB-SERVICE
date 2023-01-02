@@ -22,6 +22,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import pt.isec.pd.boxoffice.web_service.security.RsaKeyProperties;
 import pt.isec.pd.boxoffice.web_service.security.UserAuthenticationProvider;
 
@@ -36,6 +37,8 @@ public class Application
 		this.rsaKeys = rsaKeys;
 	}
 
+
+
 	@Configuration
 	@EnableWebSecurity
 	public class SecurityConfig
@@ -49,6 +52,9 @@ public class Application
 			auth.authenticationProvider(authProvider);
 		}
 
+
+
+
 		@Bean
 		@Order(1)
 		public SecurityFilterChain loginFilterChain(HttpSecurity http) throws Exception
@@ -61,6 +67,34 @@ public class Application
 					.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 					.build();
 		}
+
+		@Bean
+		@Order(2)
+		public SecurityFilterChain showsFilterChain(HttpSecurity http) throws Exception
+		{
+			return http
+					.csrf(csrf -> csrf.disable())
+					.securityMatcher("/shows")
+					.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+					.httpBasic(Customizer.withDefaults())
+					.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+					.build();
+		}
+
+		/*
+		@Order(3)
+		@Bean
+		public SecurityFilterChain adminFilterChain(HttpSecurity http) throws Exception
+		{
+			return http
+					.csrf(csrf -> csrf.disable())
+					.securityMatcher("/admin/**")
+					.authorizeHttpRequests(auth -> auth.anyRequest().hasRole("ADMIN"))
+					.httpBasic(Customizer.withDefaults())
+					.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+					.build();
+		}
+		*/
 
 		@Bean
 		public SecurityFilterChain genericFilterChain(HttpSecurity http) throws Exception

@@ -17,6 +17,9 @@ public class ShowService{
     }
 
     public List<Espetaculo> getShows(String dateStart, String dateEnd) {
-        return null;
+        if(dateStart.equals("") && dateEnd.equals("")){
+            return espetaculoRepository.findAll();
+        }
+        return espetaculoRepository.findByData_horaBetweenDateStartAndDateEnd(dateStart, dateEnd);
     }
 }
