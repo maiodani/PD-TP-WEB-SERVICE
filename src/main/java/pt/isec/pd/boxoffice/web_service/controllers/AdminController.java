@@ -24,13 +24,13 @@ public class AdminController {
     }
 
 
-    @PostMapping("create")
+    @PostMapping
     public ResponseEntity<Utilizador> createUser(@RequestBody Utilizador utilizador)
     {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(utilizador));
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Utilizador> deleteUser(@PathVariable("id") Integer id)
     {
         return ResponseEntity.ok().body(userService.deleteUser(id));
